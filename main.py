@@ -19,6 +19,7 @@ def load_module():
  global module, possible_moves
  possible_moves = get_modules_from(module)
  output_module()
+  
 def get_modules_from(module):
  moves = []
  text_file = open("Charles_Darwin/module" + str(module) + ".txt", "r")
@@ -27,7 +28,7 @@ def get_modules_from(module):
   move_read = int(move_read.strip())
   if move_read != 0:
     moves.append(move_read)
-    text_file.close()
+  text_file.close()
  return moves
 
 def output_module():
@@ -41,34 +42,34 @@ def output_moves():
  global possible_moves
  print()
  print("From here you can move to modules: | ",end='')
-for move in possible_moves:
- print(move,'| ',end='')
- print()
+ for move in possible_moves:
+  print(move,'| ',end='')
+  print()
 
 def get_action():
  global module, last_module, possible_moves
-valid_action = False
-while valid_action == False:
- print("What do you want to do next ? (MOVE, SCANNER)")
- action = input(">")
-if action == "MOVE":
- move = int(input("Enter the module to move to: "))
-if move in possible_moves:
- valid_action = True
- last_module = module
- module = move
-else:
- print("The module must be connected to the current module.")
+ valid_action = False
+ while valid_action == False:
+  print("What do you want to do next ? (MOVE, SCANNER)")
+  action = input(">")
+  if action == "MOVE":
+    move = int(input("Enter the module to move to: "))
+  if move in possible_moves:
+    valid_action = True
+    last_module = module
+    module = move
+  else:
+    print("The module must be connected to the current module.")
 
 #Main program starts here
 
 while alive and not won:
  load_module()
-if won == False and alive == True:
- output_moves()
- get_action()
+ if won == False and alive == True:
+  output_moves()
+  get_action()
 if won == True:
- print("The queen is trapped and you burn it to death with your flamethrower.")
- print("Game over. You win!")
+    print("The queen is trapped and you burn it to death with your flamethrower.")
+    print("Game over. You win!")
 if alive == False:
- print("The station has run out of power. Unable to sustain life support, you die.")
+    print("The station has run out of power. Unable to sustain life support, you die.")
