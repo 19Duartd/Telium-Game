@@ -81,14 +81,6 @@ def spawn_npcs():
 
 
 #Main program starts here
-print("                                      ")
-print(" _____ _____ _     _____ _   ____  ___")
-print("|_   _|  ___| |   |_   _| | | |  \/  |")
-print("  | | | |__ | |     | | | | | | .  . |")
-print("  | | |  __|| |     | | | | | | |\/| |")
-print("  | | | |___| |_____| |_| |_| | |  | |")
-print("  \_/ \____/\_____/\___/ \___/\_|  |_/")
-print("                                      ")
 spawn_npcs()
 print("Queen alien is located in module:",queen)
 print("Ventilation shafts are located in modules:",vent_shafts)
