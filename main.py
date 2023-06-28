@@ -14,17 +14,18 @@ queen = 0 #Location of the queen alien
 vent_shafts = [] #Location of the ventilation shaft entrances
 info_panels = [] #Location of the information panels
 workers = [] #Location of the worker aliens
-#Procedure declarations
+#FUNCTIONS AND STUFF
+
 def load_module():
-    global module, possible_moves
-    possible_moves = get_modules_from(module)
-    output_module()
+    global module, possible_moves  #Declares [module] & [possible_moves] globaly
+    possible_moves = get_modules_from(module) # get's the possible moves
+    output_module() #runs the output functions
   
 def get_modules_from(module):
-    moves = []
-    text_file = open("Charles_Darwin/module" + str(module) + ".txt", "r")
-    for counter in range(0,4):
-        move_read = text_file.readline()
+    moves = [] # set's moves to a blank array
+    text_file = open("Charles_Darwin/module" + str(module) + ".txt", "r") #reads the text files
+    for counter in range(0,4): # runs four times
+        move_read = text_file.readline() # reads one line
         move_read = int(move_read.strip())
         if move_read != 0:
             moves.append(move_read)
@@ -51,6 +52,11 @@ def get_action():
     while valid_action == False:
         print("What do you want to do next ? (MOVE, SCANNER)")
         action = input(">")
+        if action == "SCANNER":
+          command = input("Scanner ready.")
+          if command == "LOCK":
+            lock()
+ 
         if action == "MOVE":
             move = int(input("Enter the module to move to: "))
             if move in possible_moves:
@@ -78,6 +84,17 @@ def spawn_npcs():
   for counter in range(0,3):
     i=i+1
     workers.append(module_set[i])
+def lock():
+  global num_modules, power, locked
+  new_lock = int(input("Enter module to lock:"))
+  if new_lock < 0 or new_lock > num_modules:
+    print("Invalid module. Operation failed.")
+  elif new_lock ==queen:
+    print("Operation failed. Unable to lock module")  
+  else:
+    locked = new_lock
+    print("Aliens cannot get into module", locked)
+  power_used = 25 + 5 * random.randint(0,5)
 
 
 #Main program starts here
